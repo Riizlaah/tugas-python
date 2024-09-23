@@ -1,4 +1,4 @@
-import re, datetime, os
+import re, datetime
 
 
 barang = {
@@ -8,6 +8,12 @@ barang = {
   'Tipe-x': 5000,
   'Penghapus karet': 1500
 }
+
+def unique_arr(arr):
+  seen = []
+  for x in arr:
+    if x not in seen: seen.append(x)
+  return seen
 
 print("\nSelamat datang di kasir.")
 print("List barang :\n1. Buku : Rp 4000\n2. Polpen : Rp 2500\n3. Pensil : Rp 2000\n4. Tipe-x : Rp 5000\n5. Penghapus karet : Rp 1500")
@@ -20,8 +26,7 @@ while True:
   print("Pola tidak sesuai, masukkan lagi")
 
 arr = numbers.split(",")
-arr.reverse()
-arr = set(arr)
+arr = unique_arr(arr)
 keys = barang.keys()
 
 barang2 = {}
@@ -38,8 +43,9 @@ for i in arr:
   barang2[nama_barang] = {'jumlah': jumlah, 'total-harga': jumlah * barang[nama_barang]}
 
 tw = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+tw2 = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
-info = "Catatan Pembelian (%s)" % tw
+info = "Catatan Pembelian (%s)" % tw2
 total = 0
 for key in barang2.keys():
   info += "\n- %s :\n" % key
@@ -53,4 +59,6 @@ file = open(namafile, "x")
 file.write(info)
 file.close()
 
-print("\n---\nCatatan Pembelian sudah dibuat di dalam file %s, silahkan dilihat\n" % namafile)
+print("\n\n-----\n\n"+info+"\n\n-----\n")
+
+print("\nCatatan Pembelian sudah dibuat di dalam file %s, silahkan dilihat\n" % namafile)
