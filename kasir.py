@@ -10,7 +10,7 @@ barang = {
 }
 
 print("\nSelamat datang di kasir.")
-print("List barang :\n1. Buku\n2. Polpen\n3. Pensil\n4. Tipe-x\n5. Penghapus karet")
+print("List barang :\n1. Buku : Rp 4000\n2. Polpen : Rp 2500\n3. Pensil : Rp 2000\n4. Tipe-x : Rp 5000\n5. Penghapus karet : Rp 1500")
 
 print("\nMasukkan nomor-nomor barang yang anda beli yang dipisah dengan koma(contoh 1,2,4)")
 while True:
@@ -48,8 +48,9 @@ for key in barang2.keys():
   total += barang2[key]['total-harga']
 info += "\nTotal harga semua barang : %s" % total
 
-file = open("catatan_pembelian_"+tw+".txt", "x")
+namafile = "catatan_pembelian_"+tw+".txt"
+file = open(namafile, "x")
 file.write(info)
 file.close()
 
-print("\n---\nCatatan Pembelian sudah dibuat, silahkan dilihat\n")
+print("\n---\nCatatan Pembelian sudah dibuat di dalam file %s, silahkan dilihat\n" % namafile)
